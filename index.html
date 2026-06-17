@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Quote of the Day</title>
+<style>
+  :root { --accent: #d9b08c; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: Georgia, "Times New Roman", serif; color: #f3efe7;
+    height: 100vh; overflow: hidden; display: grid; place-items: center;
+    background: linear-gradient(120deg, #1a1410, #241a22, #14202a, #1a1410);
+    background-size: 400% 400%; animation: flow 40s ease infinite;
+  }
+  @keyframes flow { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+  #card { max-width: 80vw; text-align: center; padding: 0 4vw; }
+  #mark { font-size: 18vh; line-height: 0; color: var(--accent); opacity: .5; height: 8vh; }
+  #q { font-size: 5.2vh; line-height: 1.35; font-style: italic; font-weight: 400; }
+  #a { margin-top: 4vh; font-size: 3vh; letter-spacing: .2vh; color: var(--accent);
+       font-family: "Helvetica Neue", Arial, sans-serif; text-transform: uppercase; }
+  #a::before { content: "— "; }
+</style>
+</head>
+<body>
+  <div id="card">
+    <div id="mark">&#8220;</div>
+    <div id="q"></div>
+    <div id="a"></div>
+  </div>
+<script>
+  const qs = new URLSearchParams(location.search);
+  if (qs.get("accent")) document.documentElement.style.setProperty("--accent", qs.get("accent"));
+
+  // Embedded dataset — no network. Rotates daily, deterministic by date.
+  const QUOTES = [
+    ["The only way to do great work is to love what you do.", "Steve Jobs"],
+    ["In the middle of difficulty lies opportunity.", "Albert Einstein"],
+    ["What we think, we become.", "Buddha"],
+    ["The unexamined life is not worth living.", "Socrates"],
+    ["He who has a why to live can bear almost any how.", "Friedrich Nietzsche"],
+    ["We suffer more often in imagination than in reality.", "Seneca"],
+    ["The best way to predict the future is to invent it.", "Alan Kay"],
+    ["Simplicity is the ultimate sophistication.", "Leonardo da Vinci"],
+    ["Whether you think you can or you can't, you're right.", "Henry Ford"],
+    ["It always seems impossible until it's done.", "Nelson Mandela"],
+    ["Do not go where the path may lead; go where there is no path and leave a trail.", "Ralph Waldo Emerson"],
+    ["The journey of a thousand miles begins with a single step.", "Lao Tzu"],
+    ["Happiness depends upon ourselves.", "Aristotle"],
+    ["Knowing yourself is the beginning of all wisdom.", "Aristotle"],
+    ["The mind is everything. What you think you become.", "Buddha"],
+    ["You miss 100% of the shots you don't take.", "Wayne Gretzky"],
+    ["Turn your wounds into wisdom.", "Oprah Winfrey"],
+    ["What you do speaks so loudly I cannot hear what you say.", "Ralph Waldo Emerson"],
+    ["Life is really simple, but we insist on making it complicated.", "Confucius"],
+    ["Our greatest glory is not in never falling, but in rising every time we fall.", "Confucius"],
+    ["The future belongs to those who believe in the beauty of their dreams.", "Eleanor Roosevelt"],
+    ["Everything you can imagine is real.", "Pablo Picasso"],
+    ["A room without books is like a body without a soul.", "Cicero"],
+    ["The two most important days in your life are the day you are born and the day you find out why.", "Mark Twain"],
+    ["It is not length of life, but depth of life.", "Ralph Waldo Emerson"],
+    ["Wherever you go, go with all your heart.", "Confucius"],
+    ["Stars can't shine without darkness.", "Anonymous"],
+    ["The only true wisdom is in knowing you know nothing.", "Socrates"],
+    ["Act as if what you do makes a difference. It does.", "William James"],
+    ["No act of kindness, no matter how small, is ever wasted.", "Aesop"],
+    ["Courage is grace under pressure.", "Ernest Hemingway"],
+    ["The best revenge is to be unlike him who performed the injury.", "Marcus Aurelius"],
+  ];
+
+  const epochDay = Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / 86400000);
+  const [text, author] = QUOTES[epochDay % QUOTES.length];
+  document.getElementById("q").textContent = text;
+  document.getElementById("a").textContent = author;
+</script>
+</body>
+</html>

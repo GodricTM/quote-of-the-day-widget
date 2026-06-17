@@ -1,0 +1,15 @@
+{
+  "name": "Quote of the Day",
+  "description": "A daily quote in elegant type on a slow-shifting gradient. Embedded dataset, zero calls.",
+  "entry": "index.html",
+  "dwellSec": 40,
+  "aspect": "16:9",
+  "category": "Ambient",
+  "author": "GodricTM",
+  "screenshots": ["screenshot.png"],
+  "config": [
+    { "key": "accent", "type": "text", "label": "Accent color (hex)", "default": "#d9b08c" }
+  ],
+  "urlParams": { "accent": "{accent}" },
+  "permissions": []
+}
